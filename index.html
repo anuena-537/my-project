@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Medicine Reminder</title>
+    <style>
+        /* Global Styles */
+        body {
+            background-image: url('https://tse3.mm.bing.net/th/id/OIP.muZ-X5ycH6mr9LBVqFBxqwHaEo?rs=1&pid=ImgDetMain&o=7&rm=3');
+            font-family: Arial, sans-serif;
+            background-repeat: no-repeat; 
+            background-size:cover;
+            
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            color: #00bfff;
+            margin-top: 40px;
+            text-shadow: 1px 1px 2px #00000033;
+        }
+
+        h2 {
+            color: #333;
+            margin-top: 30px;
+        }
+
+        /* Form Styles */
+        form {
+            background-color: #ffffff;
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 200px;
+            font-size: 16px;
+        }
+
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #00bfff;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #009acd;
+        }
+
+        /* Patient Table Styles */
+        table {
+            width: 80%;
+            max-width: 600px;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #00bfff;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #e0f7ff;
+            cursor: pointer;
+        }
+
+        a.patient-link {
+            color: #0077cc;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a.patient-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Medicine Reminder</h1>
+
+    <form method="post">
+        <label for="patient_name">Patient Name:</label>
+        <input type="text" id="patient_name" name="patient_name" placeholder="Enter patient name" required>
+        <input type="submit" value="Add Patient">
+    </form>
+
+    <h2>Patients:</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Patient Name</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for patient in patients %}
+            <tr>
+                <td>{{ patient }}</td>
+                <td><a class="patient-link" href="{{ url_for('add_medicine', patient_name=patient) }}">View Medicines</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

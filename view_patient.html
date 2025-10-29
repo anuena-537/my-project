@@ -1,0 +1,18 @@
+
+templates/view_patient.html:
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>View Patient</title>
+</head>
+<body>
+    <h1>Patient Details</h1>
+    <p>Patient Name: {{ patient_name }}</p>
+    <p>Phone Number: {{ patient_details['phone_number'] }}</p>
+    <h2>Medicines:</h2>
+    {% for medicine_name, medicine_details in patient_details['medicines'].items() %}
+        <p>{{ medicine_name }} - {{ medicine_details['dosage'] }} at {{ medicine_details['time'] }}</p>
+    {% endfor %}
+</body>
+</html>
